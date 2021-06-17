@@ -52,15 +52,10 @@ effectSize <- function(index,treatments,controls, database){
         
   with(database,{
         
-        
-        #treatments = treatments
-        #controls = controls
-        
         n_variables = length(levels(as.factor(variable)))  #number of variables to be analysed
         repControl = length(values[Treatment==controls[1]])/n_variables # N of replicates of controls
         repTreatment = length(values[Treatment==treatments[1]])/n_variables  #N of replicates of treatments
-                #criar 4 matriz para o resultado final
-        
+
         treatm = c() # para armazenar temporariamente os dados dos tratamentos
         control = c()   # para armazenar temporariamente os dados do controle
         mylist = c()# para armazenar o resultado final
@@ -94,7 +89,7 @@ effectSize <- function(index,treatments,controls, database){
                   }
                 }
               }
-        
+        }
         #detach(mydata)
         combination = repControl*repTreatment
         n_controls = length(controls)
@@ -104,9 +99,7 @@ effectSize <- function(index,treatments,controls, database){
         var = rep(levels(as.factor(variable)), each=combination*n_treatments*n_controls); var
         
         response = data.frame( var,treat,contr,effect=paste0(treat,"/",contr) ,value = mylist)
- 
         return(response)
-        }
   })
 }
 
